@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// displays possible SQL errors when connecting SQL and C++
 void showSQLError(unsigned int handleType, const SQLHANDLE& handle)
 {
 	SQLCHAR SQLState[1024];
