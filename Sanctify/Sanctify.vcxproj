@@ -130,6 +130,9 @@
     <ClCompile Include="SQLTemplate.cpp" />
     <ClCompile Include="Sanctify.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="DBInstantiation.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
