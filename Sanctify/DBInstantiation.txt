@@ -1,1 +1,174 @@
-create table
+/*start table creation process*/
+
+/*not yet complete*/
+create table user(
+username varchar(56) unique not null,
+password varchar(56) not null,
+email varchar(80) not null,
+first_name varchar(30),
+last_name varchar(35),
+primary key (username));
+
+create table employee(
+username varchar(56),
+salary numeric(8,2),
+role varchar(16),
+primary key (username),
+foreign key(username) references user,
+check (salary > 0),
+check (role in ('admin', 'developer', 'customer service')));
+
+create table customer(
+username varchar(56),
+sub_type varchar(4),
+primary key (username),
+foreign key(username) references user,
+check (sub_stype in ('free', 'paid')));
+
+create table content_creator(
+username varchar(56),
+commission numeric (4,2),
+primary key (username),
+foreign key(username) references user,
+check (commission > 0));
+
+create table praylist(
+praylist_id  int identity(1,1),
+praylist_name varchar(56) not null,
+description varchar(1000),
+primary key(praylist_id));
+
+create table user_praylist(
+username varchar(56),
+praylist_id int,
+primary key (username, praylist_id),
+foreign key(username) references user,
+foreign key(praylist_id) references praylist);
+
+create table content(
+content_id int identity(1,1),
+type varchar(5),
+content_name varchar(56) not null,
+description varchar(1000),
+visibility varchar(4),
+primary key (content_id),
+check (type in ('audio', 'text')),
+check (content in ('free', 'paid')));
+
+create table praylist_content(
+praylist_id int,
+content_id int,
+primary key (praylist_id, content_id),
+foreign key(praylist_id) references praylist,
+foreign key(content_id) references content);
+
+create table favorites(
+username varchar(56),
+content_id int,
+primary key (username, content_id),
+foreign key(username) references user,
+foreign key(content_id) references content);
+
+
+/*not yet complete*/
+create table audio(
+content_id int,
+file blob(__KB) not null,
+primary key (content_id),
+foreign key(content_id) references content,
+constraint check_file_type check (
+	file like '%.txt' or
+	file like '%.wav')
+);
+
+
+/*verify constraint works*/
+create table text(
+content_id int,
+file clob(__KB),
+primary key (content_id),
+foreign key(content_id) references content,
+constraint check_file_type check (
+	file like '%.txt')
+);
+
+create table album(
+album_id int identity(1,1), 
+album_name varchar(56) not null,
+primary key (album_id));
+
+create table content_album(
+content_id int,
+album_id int,
+primary key (content_id),
+foreign key(content_id) references content,
+foreign key(album_id) references album);
+
+create table category(
+cat_name varchar(56),
+primary key (cat_name));
+
+create table album_category(
+album_id int,
+cat_name varchar(56),
+primary key (album_id),
+foreign key(album_id) references album,
+foreign key(cat_name) references category);
+
+create table uploads(
+username varchar(56),
+content_id int,
+primary key (content_id),
+foreign key(username) references content_creator,
+foreign key(content_id) references content);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
