@@ -123,6 +123,27 @@ foreign key (username) references Content_creator,
 foreign key (content_id) references Content);
 
 -- VIEWS
+create view FreeAudioContent as 
+	select Content.content_name, Content.description, Audio.duration, 
+	Audio.file 
+	from Content join Audio on Content.content_id = Audio.content_id
+	where Content.visibility = 'free' and Content.type = 'audio'; 
+
+create view FreeTextContent as 
+	select Content.content_name, Content.description, Text.file
+	from Content join Text on Content.content_id = Text.content_id
+	where Content.visibility = 'free' and Content.type = 'text'; 
+
+create view PaidAudioContent as 
+	select Content.content_name, Content.description, Audio.duration, 
+	Audio.file 
+	from Content join Audio on Content.content_id = Audio.content_id
+	where Content.visibility = 'paid' and Content.type = 'audio';
+
+create view PaidTextContent as 
+	select Content.content_name, Content.description, Text.file
+	from Content join Text on Content.content_id = Text.content_id
+	where Content.visibility = 'paid' and Content.type = 'text'; 
 
 -- ROLES
 
