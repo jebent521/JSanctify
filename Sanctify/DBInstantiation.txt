@@ -125,3 +125,26 @@ foreign key (content_id) references Content);
 -- VIEWS
 
 -- ROLES
+
+create role Free_Customer;
+grant select, update, delete, insert on User;
+grant insert, select, delete on Praylist;
+grant insert, select, delete on Praylist_Content;
+grant select on FreeAudioContent;
+grant select on FreeTextContent;
+ 
+create role Paid_Customer;
+grant Free to Paid;
+grant select on PaidAudioContent;
+grant select on PaidTextContent;
+
+create role Employee;
+grant Paid to Employee with grant option;
+grant delete on Content, Audio, Text;
+
+create role ContentCreator;
+grant Paid to ContentCreator;
+grant insert, delete on Content, Audio, Text;
+
+
+
