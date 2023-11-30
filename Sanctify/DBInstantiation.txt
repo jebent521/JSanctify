@@ -121,3 +121,7 @@ content_id int,
 primary key (content_id),
 foreign key (username) references Content_creator,
 foreign key (content_id) references Content);
+
+-- VIEWS
+
+-- ROLES
