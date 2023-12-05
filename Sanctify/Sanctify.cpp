@@ -10,8 +10,8 @@ int main()
 {
     Util thingy;
     vector<string> persons = thingy.executeQuery("SELECT * FROM Persons", 5, "", "");
-    for (int i = 0; i < persons.size(); i++) {
-        cout << persons.at(i) << endl;
+    for (string entry : persons) {
+        cout << entry << endl;
     }
 }
 
