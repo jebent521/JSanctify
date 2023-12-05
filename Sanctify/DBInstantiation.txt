@@ -33,20 +33,20 @@ foreign key (username) references [User],
 check (commission > 0));
 
 create table Praylist(
-praylist_id  int identity(1,1),
+praylist_id  numeric(5,0) identity(1,1),
 praylist_name varchar(56) not null,
 description varchar(1000),
 primary key (praylist_id));
 
 create table User_Praylist(
 username varchar(56),
-praylist_id int,
+praylist_id numeric(5,0),
 primary key (username, praylist_id),
 foreign key (username) references [User],
 foreign key (praylist_id) references Praylist);
 
 create table Content(
-content_id int identity(1,1),
+content_id numeric(5,0) identity(1,1),
 type varchar(5),
 content_name varchar(56) not null,
 description varchar(1000),
@@ -56,41 +56,41 @@ check (type in ('audio', 'text')),
 check (visibility in ('free', 'paid'))); /*Changed Content to visibility*/
 
 create table Praylist_Content(
-praylist_id int,
-content_id int,
+praylist_id numeric(5,0),
+content_id numeric(5,0),
 primary key (praylist_id, content_id),
 foreign key (praylist_id) references Praylist,
 foreign key (content_id) references Content);
 
 create table Favorites(
 username varchar(56),
-content_id int,
+content_id numeric(5,0),
 primary key (username, content_id),
 foreign key(username) references [User],
 foreign key(content_id) references Content);
 
 create table Audio(
-content_id int,
+content_id numeric(5,0),
 [file] varbinary(max),
 primary key (content_id),
 foreign key(content_id) references Content,
 ); /*file type checking - handle in application logic*/
 
 create table [Text](
-content_id int,
+content_id numeric(5,0),
 [file] nvarchar(max),
 primary key (content_id),
 foreign key (content_id) references Content,
 ); /*file type checking - handle in application logic*/
 
 create table Album(
-album_id int identity(1,1), 
+album_id numeric(5,0) identity(1,1), 
 album_name varchar(56) not null,
 primary key (album_id));
 
 create table Content_Album(
-content_id int,
-album_id int,
+content_id numeric(5,0),
+album_id numeric(5,0),
 primary key (content_id),
 foreign key (content_id) references Content,
 foreign key (album_id) references Album);
@@ -100,7 +100,7 @@ cat_name varchar(56),
 primary key (cat_name));
 
 create table Album_Category(
-album_id int,
+album_id numeric(5,0),
 cat_name varchar(56),
 primary key (album_id),
 foreign key (album_id) references Album,
@@ -108,7 +108,7 @@ foreign key (cat_name) references Category);
 
 create table Uploads(
 username varchar(56),
-content_id int,
+content_id numeric(5,0),
 primary key (content_id),
 foreign key (username) references ContentCreator,
 foreign key (content_id) references Content);
