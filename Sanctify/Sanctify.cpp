@@ -8,10 +8,13 @@
 using namespace std;
 int main()
 {
-    Util thingy;
-    vector<string> persons = thingy.executeQuery("SELECT * FROM Persons", 5, "", "");
-    for (string entry : persons) {
-        cout << entry << endl;
+    queue<string> result;
+    //Util thingy;
+    //vector<string> persons = thingy.executeQuery("SELECT * FROM Persons where userID = ", 5, "", "");
+    result = query(2, "select firstName, lastName from Persons");
+    while (!result.empty()) {
+        cout << result.front() << endl;;
+        result.pop();
     }
 }
 
