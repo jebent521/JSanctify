@@ -1,14 +1,14 @@
-/*
 #include <iostream>
 #include <windows.h>
 #include <sqlext.h>
 #include <sqltypes.h>
 #include <sql.h>
-
+#include <string>
+#include <vector>
+#include "Util.h"
 using namespace std;
 
-// displays possible SQL errors when connecting SQL and C++
-void showSQLError(unsigned int handleType, const SQLHANDLE& handle)
+void Util::showSQLError(unsigned int handleType, const SQLHANDLE& handle)
 {
 	SQLCHAR SQLState[1024];
 	SQLCHAR message[1024];
@@ -17,13 +17,14 @@ void showSQLError(unsigned int handleType, const SQLHANDLE& handle)
 		cout << "SQL driver message: " << message << "\nSQL state: " << SQLState << "." << endl;
 }
 
-int main()
+vector<string> Util::executeQuery(const char* query, unsigned int cols, const char* uid, const char* pwd)
 {
+	vector<string> retVect;
 	SQLHANDLE SQLEnvHandle = NULL;
 	SQLHANDLE SQLConnectionHandle = NULL;
 	SQLHANDLE SQLStatementHandle = NULL;
 	SQLRETURN retCode = 0;
-	char SQLQuery[] = "SELECT * FROM Persons";
+	//char SQLQuery[] = query;
 
 	do {
 		if (SQL_SUCCESS != SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &SQLEnvHandle))
@@ -45,24 +46,24 @@ int main()
 		SQLCHAR retConString[1024]; // Conection string
 		switch (SQLDriverConnect(SQLConnectionHandle, NULL, (SQLCHAR*)"DRIVER={SQL Server}; SERVER=EngSQL01.franciscan.edu, 1433; DATABASE=Sanctify; UID=SanctifyJCETAdmin; PWD=LetsGetDerpy-123$;", SQL_NTS, retConString, 1024, NULL, SQL_DRIVER_NOPROMPT)) {
 			// Establishes connections to a driver and a data source... tests output
-			case SQL_SUCCESS:
-				break;
-			case SQL_SUCCESS_WITH_INFO:
-				break;
-			case SQL_NO_DATA_FOUND:
-				showSQLError(SQL_HANDLE_DBC, SQLConnectionHandle);
-				retCode = -1;
-				break;
-			case SQL_INVALID_HANDLE:
-				showSQLError(SQL_HANDLE_DBC, SQLConnectionHandle);
-				retCode = -1;
-				break;
-			case SQL_ERROR:
-				showSQLError(SQL_HANDLE_DBC, SQLConnectionHandle);
-				retCode = -1;
-				break;
-			default:
-				break;
+		case SQL_SUCCESS:
+			break;
+		case SQL_SUCCESS_WITH_INFO:
+			break;
+		case SQL_NO_DATA_FOUND:
+			showSQLError(SQL_HANDLE_DBC, SQLConnectionHandle);
+			retCode = -1;
+			break;
+		case SQL_INVALID_HANDLE:
+			showSQLError(SQL_HANDLE_DBC, SQLConnectionHandle);
+			retCode = -1;
+			break;
+		case SQL_ERROR:
+			showSQLError(SQL_HANDLE_DBC, SQLConnectionHandle);
+			retCode = -1;
+			break;
+		default:
+			break;
 		}
 
 		if (retCode == -1)
@@ -72,7 +73,7 @@ int main()
 			// Allocates the statement... breaks if unsuccessful
 			break;
 
-		if (SQL_SUCCESS != SQLExecDirect(SQLStatementHandle, (SQLCHAR*)SQLQuery, SQL_NTS)) { // this is the part that executes the query
+		if (SQL_SUCCESS != SQLExecDirect(SQLStatementHandle, (SQLCHAR*)query, SQL_NTS)) { // this is the part that executes the query
 			// Executes a preparable statement... shows error and breaks if unsuccessful
 			showSQLError(SQL_HANDLE_STMT, SQLStatementHandle);
 			break;
@@ -84,6 +85,7 @@ int main()
 			char address[255];
 			char city[255];
 			while (SQLFetch(SQLStatementHandle) == SQL_SUCCESS) {
+				/*
 				// Fetches the next rowset of data from the result
 				// handle, row, data type, variable to store it in, size of variable, NULL
 				SQLGetData(SQLStatementHandle, 1, SQL_C_DEFAULT, &PersonID, sizeof(PersonID), NULL);
@@ -93,6 +95,12 @@ int main()
 				SQLGetData(SQLStatementHandle, 5, SQL_C_DEFAULT, &city, sizeof(city), NULL);
 				// Retrieves data for a single column in the result set... one getData line for each column
 				cout << PersonID << "\t" << lastName << "\t" << firstName << "\t" << address << "\t" << city << endl;
+				*/
+				for (int i = 1; i <= cols; i++) {
+					string entry = "";
+					SQLGetData(SQLStatementHandle, i, SQL_C_DEFAULT, &entry, sizeof(entry), NULL);
+					retVect.push_back(entry);
+				}
 			}
 		}
 	} while (FALSE); // you might be thinking to yourself... "while false?! that only runs it once!", and you're right.
@@ -103,6 +111,5 @@ int main()
 	SQLFreeHandle(SQL_HANDLE_DBC, SQLConnectionHandle);
 	SQLFreeHandle(SQL_HANDLE_ENV, SQLEnvHandle);
 	// Frees the resources and disconnects
-
-	getchar(); // freezes the console so you can see the data
-}*/
+	return retVect;	
+}
