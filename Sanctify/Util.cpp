@@ -20,7 +20,8 @@ void showSQLError(unsigned int handleType, const SQLHANDLE& handle)
         // Returns the current values of multiple fields of a diagnostic record that contains error, warning, and status information
         cout << "SQL driver message: " << message << "\nSQL state: " << SQLState << "." << endl;
 }
-//don't bother understanding it, just follow the comments to use it
+// don't bother understanding it, just follow the comments to use it
+// CREDIT GOES TO TYLER DEAN FOR WRITING THIS FUNCTION
 queue<string> query(int numOfItems, string inputQuery) {
 
     SQLHANDLE SQLEnvHandle = NULL;
