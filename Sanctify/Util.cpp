@@ -1,14 +1,13 @@
+/* Util.cpp contains the implementation for Util.h */
+
 #include <iostream>
-#include <functional>
-#include<chrono>   //time for random seed
 #include <queue>
 #include <windows.h>
 #include <sqlext.h>
 #include <sqltypes.h>
 #include <sql.h>
 #include "Util.h"
-#include <algorithm>
-#include <conio.h>
+
 
 
 using namespace std;
