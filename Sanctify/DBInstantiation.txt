@@ -1,7 +1,7 @@
 /*start table creation process*/
 
 /*not yet complete*/
-create table User(
+create table [User] (
 username varchar(56),
 password varchar(56) not null,
 email varchar(80) not null,
@@ -14,7 +14,7 @@ username varchar(56),
 salary numeric(8,2),
 role varchar(16),
 primary key (username),
-foreign key (username) references User,
+foreign key (username) references [User],
 check (salary > 0),
 check (role in ('admin', 'developer', 'customer service')));
 
@@ -22,84 +22,75 @@ create table Customer(
 username varchar(56),
 sub_type varchar(4),
 primary key (username),
-foreign key (username) references User,
-check (sub_stype in ('free', 'paid')));
+foreign key (username) references [User],
+check (sub_type in ('free', 'paid')));
 
 create table ContentCreator(
 username varchar(56),
 commission numeric (4,2),
 primary key (username),
-foreign key (username) references User,
+foreign key (username) references [User],
 check (commission > 0));
 
 create table Praylist(
-praylist_id  int identity(1,1),
+praylist_id  numeric(5,0) identity(1,1),
 praylist_name varchar(56) not null,
 description varchar(1000),
 primary key (praylist_id));
 
 create table User_Praylist(
 username varchar(56),
-praylist_id int,
+praylist_id numeric(5,0),
 primary key (username, praylist_id),
-foreign key (username) references User,
+foreign key (username) references [User],
 foreign key (praylist_id) references Praylist);
 
 create table Content(
-content_id int identity(1,1),
+content_id numeric(5,0) identity(1,1),
 type varchar(5),
 content_name varchar(56) not null,
 description varchar(1000),
 visibility varchar(4),
 primary key (content_id),
 check (type in ('audio', 'text')),
-check (content in ('free', 'paid')));
+check (visibility in ('free', 'paid'))); /*Changed Content to visibility*/
 
 create table Praylist_Content(
-praylist_id int,
-content_id int,
+praylist_id numeric(5,0),
+content_id numeric(5,0),
 primary key (praylist_id, content_id),
 foreign key (praylist_id) references Praylist,
 foreign key (content_id) references Content);
 
 create table Favorites(
 username varchar(56),
-content_id int,
+content_id numeric(5,0),
 primary key (username, content_id),
-foreign key(username) references User,
+foreign key(username) references [User],
 foreign key(content_id) references Content);
 
-
-/*not yet complete*/
 create table Audio(
-content_id int,
-file blob(__KB),
+content_id numeric(5,0),
+[file] varbinary(max),
 primary key (content_id),
 foreign key(content_id) references Content,
-/*constraint check_file_type check (
-	file like '%.mp3' or
-	file like '%.wav')*/
-);
+); /*file type checking - handle in application logic*/
 
-
-/*verify constraint works*/
-create table Text(
-content_id int,
-file clob(__KB),
+create table [Text](
+content_id numeric(5,0),
+[file] nvarchar(max),
 primary key (content_id),
 foreign key (content_id) references Content,
-/*constraint check_file_type check (
-	file like '%.txt')*/
-);
+); /*file type checking - handle in application logic*/
 
 create table Album(
-album_id int identity(1,1), 
+album_id numeric(5,0) identity(1,1), 
 album_name varchar(56) not null,
 primary key (album_id));
 
 create table Content_Album(
-content_id int,
-album_id int,
+content_id numeric(5,0),
+album_id numeric(5,0),
 primary key (content_id),
 foreign key (content_id) references Content,
 foreign key (album_id) references Album);
@@ -109,7 +100,7 @@ cat_name varchar(56),
 primary key (cat_name));
 
 create table Album_Category(
-album_id int,
+album_id numeric(5,0),
 cat_name varchar(56),
 primary key (album_id),
 foreign key (album_id) references Album,
@@ -117,9 +108,9 @@ foreign key (cat_name) references Category);
 
 create table Uploads(
 username varchar(56),
-content_id int,
+content_id numeric(5,0),
 primary key (content_id),
-foreign key (username) references Content_creator,
+foreign key (username) references ContentCreator,
 foreign key (content_id) references Content);
 
 -- VIEWS

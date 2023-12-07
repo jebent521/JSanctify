@@ -1,13 +1,8 @@
-#include <iostream>
-#include <windows.h>
-#include <sqlext.h>
-#include <sqltypes.h>
-#include <sql.h>
-#include <vector>
+/* Util.h contains the interface for all Utilities (functions that any class or program can use) */
+
+#pragma once
 #include <string>
-class Util {
-public:
-	std::vector<std::string> executeQuery(const char* query, unsigned int cols, const char* uid, const char* pwd);
-private:
-	void showSQLError(unsigned int handleType, const SQLHANDLE& handle);
-};
+#include <queue>
+
+std::queue<std::string> query(int col, std::string query);
+void demoQuery(); // for documentation purposes
