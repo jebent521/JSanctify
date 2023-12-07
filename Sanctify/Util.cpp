@@ -6,6 +6,7 @@
 #include <sqlext.h>
 #include <sqltypes.h>
 #include <sql.h>
+#include <stdexcept>
 #include "Util.h"
 
 
@@ -114,4 +115,36 @@ queue<string> query(int numOfItems, string inputQuery) {
     SQLFreeHandle(SQL_HANDLE_ENV, SQLEnvHandle);
 
     return resultQueue;
+}
+
+bool passwordCheck(string pw) {
+    bool upper = false;
+    bool lower = false;
+    bool number = false;
+    bool special = false;
+
+    if (pw.length() < 12) {
+        return false;
+    }
+
+    for (int i = 0; i < pw.length(); i++) {
+
+
+    }
+
+
+
+
+    return upper && lower && number && special;
+}
+
+int inputIntSelection(int low, int high)
+{
+    if (low > high) {
+        throw invalid_argument("low must be less than high");
+    }
+    int input;
+    do {
+        
+    } while (input >= low && input <= high);
 }
