@@ -9,14 +9,13 @@ void User::startMenu() {
 		1. Login
 		2. Sign up
 		3. Recover account (forgot password!)
-		4. Use free without logging in
 	*/
 	cout << "Welcome to Sanctify!\n" << endl;
 	cout << "What would you like to do?" << endl;
 	cout << "  1) Login" << endl;
 	cout << "  2) Sign up" << endl;
+	cout << "  3) Exit" << endl;
 	cout << "__________________________" << endl;
-
 }
 
 void User::login() {
@@ -24,5 +23,13 @@ void User::login() {
 }
 
 void User::signUp() {
+	string username;
+	string passward = "";
 
+	cout << "Enter new Username: ";
+
+	while (true) {
+		username;
+
+	}
 }
