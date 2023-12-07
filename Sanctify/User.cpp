@@ -5,22 +5,33 @@
 using namespace std;
 
 void User::startMenu() {
-	/* here is where we list options for what each user can do:
-		1. Login
-		2. Sign up
-		3. Recover account (forgot password!)
-	*/
 	cout << "Welcome to Sanctify!\n" << endl;
 	cout << "What would you like to do?" << endl;
 	cout << "  1) Login" << endl;
 	cout << "  2) Sign up" << endl;
 	cout << "  3) Exit" << endl;
-	cout << "__________________________" << endl;
-	cout << inputValueBetween(1, 3) << endl;
+	cout << "--------------------------" << endl;
+	switch (inputValueBetween(1,3))
+	{
+	case 1:
+		login();
+		break;
+	case 2:
+		signUp();
+		break;
+	case 3:
+		cout << "Hope to see you soon!" << endl;
+		exit(0);
+		break;
+	default:
+		throw runtime_error("How did we get here?!?!\n");
+		break;
+	}
+
 }
 
 void User::login() {
-
+	cout << "Logging in..." << endl;
 }
 
 void User::signUp() {
