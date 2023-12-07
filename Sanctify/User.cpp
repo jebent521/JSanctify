@@ -16,6 +16,7 @@ void User::startMenu() {
 	cout << "  2) Sign up" << endl;
 	cout << "  3) Exit" << endl;
 	cout << "__________________________" << endl;
+	cout << inputValueBetween(1, 3) << endl;
 }
 
 void User::login() {
