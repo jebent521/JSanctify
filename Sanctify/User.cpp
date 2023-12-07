@@ -5,12 +5,6 @@
 using namespace std;
 
 void User::startMenu() {
-	/* here is where we list options for what each user can do:
-		1. Login
-		2. Sign up
-		3. Recover account (forgot password!)
-		4. Use free without logging in
-	*/
 	cout << "Welcome to Sanctify!\n" << endl;
 	cout << "What would you like to do?" << endl;
 	cout << "  1) Login" << endl;
@@ -82,14 +76,5 @@ void User::employeeMainMenu() {
 }
 
 void User::adminMainMenu() {
-void User::signUp() {
-	string username;
-	string passward = "";
 
-	cout << "Enter new Username: ";
-
-	while (true) {
-		username;
-
-	}
 }
