@@ -6,6 +6,7 @@
 #include <sqlext.h>
 #include <sqltypes.h>
 #include <sql.h>
+#include <stdexcept>
 #include "Util.h"
 
 
@@ -114,4 +115,55 @@ queue<string> query(int numOfItems, string inputQuery) {
     SQLFreeHandle(SQL_HANDLE_ENV, SQLEnvHandle);
 
     return resultQueue;
+}
+
+bool passwordCheck(string pw) {
+    bool upper = false;
+    bool lower = false;
+    bool number = false;
+    bool special = false;
+
+    if (pw.length() < 12) {
+        return false;
+    }
+
+    for (int i = 0; i < pw.length(); i++) {
+
+
+    }
+
+
+
+
+    return upper && lower && number && special;
+}
+
+int inputValueBetween(int low, int high)
+{
+    // check if arguments are valid
+    if (low > high) {
+        throw invalid_argument("low must be less than high");
+    }
+    int intput;
+    string input;
+    do {
+        cout << "Selection: ";      // prompt user for input
+        cin >> input;
+        try                         // try to convert it to an integer
+        {
+            intput = stoi(input);
+        }
+        catch (const std::invalid_argument&)
+        {                           // if unsuccessful, yell at user and try again
+            cout << "  Invalid input. Please enter a number between " << low << " and " << high << "." << endl;
+            continue;
+        }
+        if (intput >= low && intput <= high)
+        {                           // if successful and input is within range, get out of the loop 
+            break;
+        }
+        cout << "  Invalid input. Please enter a number between " << low << " and " << high << " (inclusive)." << endl;
+    } while (true);                 // continue looping until input is valid
+    // input is valid, so return it
+    return intput;
 }
