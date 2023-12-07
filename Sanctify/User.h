@@ -2,5 +2,8 @@
 #pragma once
 
 class User {
-
+public:
+	void startMenu();
+	void login();
+	void signUp();
 };

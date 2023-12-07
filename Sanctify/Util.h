@@ -5,3 +5,4 @@
 #include <queue>
 
 std::queue<std::string> query(int col, std::string query);
+void demoQuery(); // for documentation purposes

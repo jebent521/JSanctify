@@ -6,16 +6,13 @@
 #include <string>
 #include <queue>
 #include "Util.h"
+#include "User.h"
 
 using namespace std;
 int main()
 {
-    queue<string> result;
-    result = query(5, "select * from Users");
-    while (!result.empty()) {
-        cout << result.front() << endl;;
-        result.pop();
-    }
+    User currentUser;
+    currentUser.startMenu();
 }
 
 

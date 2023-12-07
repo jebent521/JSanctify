@@ -129,7 +129,6 @@
   <ItemGroup>
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Employee.cpp" />
-    <ClCompile Include="SQLTemplate.cpp" />
     <ClCompile Include="Sanctify.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="Util.cpp" />

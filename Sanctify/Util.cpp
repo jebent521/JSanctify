@@ -20,6 +20,17 @@ void showSQLError(unsigned int handleType, const SQLHANDLE& handle)
         // Returns the current values of multiple fields of a diagnostic record that contains error, warning, and status information
         cout << "SQL driver message: " << message << "\nSQL state: " << SQLState << "." << endl;
 }
+
+void demoQuery() {
+    queue<string> result;
+    // input: expected # of columns, query as a string
+    result = query(5, "select * from Users");
+    while (!result.empty()) {
+        cout << result.front() << endl;;
+        result.pop();
+    }
+}
+
 // don't bother understanding it, just follow the comments to use it
 // CREDIT GOES TO TYLER DEAN FOR WRITING THIS FUNCTION
 queue<string> query(int numOfItems, string inputQuery) {
