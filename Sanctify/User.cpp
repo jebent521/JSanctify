@@ -1,9 +1,12 @@
 // User.cpp contains the implementation the User class
 #include <iostream>
 #include <vector>
-#include "Customer.h"
-#include "User.h"
 #include "Util.h"
+#include "User.h"
+#include "Customer.h"
+#include "Admin.h"
+#include "Employee.h"
+#include "ContentCreator.h"
 using namespace std;
 
 void User::startMenu() {
@@ -49,10 +52,40 @@ void User::login() {
 
 	//send to appropriate main menu (depending on role)
 	//user exists, what type of user is (s)he?
-	if (!query(2, "select username, sub_type from Customer where username = '" + userName + "'").empty()) {
-		//Customer currentUser = Customer(userName, sub_type);
-		//if sub_type = free, bring up free user menu
-		//else bring up paid menu 
+	vector<string> userQuery = query(2, "select username, sub_type from Customer where username = '" + userName + "'");
+	if (!userQuery.empty()) {	// if user is in customer table
+		if (userQuery.at(1).compare("paid") == 0) {	// and sub_type == paid
+			Customer currentUser = Customer(userName, 1);	// create a paid customer
+			currentUser.mainMenu();
+		}
+		else {
+			Customer currentUser = Customer(userName, 0);	// otherwise create a free customer
+			currentUser.mainMenu();
+		}
+	}
+	else {
+		userQuery = query(2, "select username, role from Employee where username = '" + userName + "'");
+		if (!userQuery.empty()) {	// if user is in Employee table
+			if (userQuery.at(1).compare("admin") == 0) {	// and role == admin
+				Admin currentUser = Admin(userName);	// create an admin
+				currentUser.mainMenu();
+			}
+			else {
+				Employee currentUser = Employee(userName);	// otherwise create a regular employee
+				currentUser.mainMenu();
+			}
+		}
+		else {
+			userQuery = query(1, "select username from ContentCreator where username = '" + userName + "'");
+			if (!userQuery.empty()) {	// if user is in ContentCreator table
+				ContentCreator currentUser = ContentCreator(userName);	// create a ContentCreator
+				currentUser.mainMenu();
+			}
+			else {
+				cout << "Your account is present in the DB but not assigned a role" << endl;
+				throw runtime_error("Username is not assigned a role.\n");
+			}
+		}
 	}
 
 	/*
@@ -97,30 +130,3 @@ void User::signUp() {
 
 
 }
-
-void User::forgotPassword() {
-	cout << "Please enter your email:" << endl;
-	//cin >> Email
-
-}
-
-void User::freeUserMenu() {
-
-}
-
-void User::paidUserMenu() {
-
-}
-
-void User::contentCreatorMenu() {
-
-}
-
-void User::employeeMainMenu() {
-
-}
-
-void User::adminMainMenu() {
-
-}
-

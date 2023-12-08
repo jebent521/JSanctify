@@ -5,6 +5,7 @@
 class Customer : public User {
 public:
 	Customer(std::string username, bool isPaid);
+	void mainMenu();
 private:
 	std::string username;
 	bool isPaid;

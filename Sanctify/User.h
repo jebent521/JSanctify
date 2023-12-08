@@ -6,10 +6,5 @@ public:
 	void startMenu();
 	void login();
 	void signUp();
-	void forgotPassword();
-	void freeUserMenu();
-	void paidUserMenu();
-	void contentCreatorMenu();
-	void employeeMainMenu();
-	void adminMainMenu();
+	//void forgotPassword(); // if we get around to it
 };

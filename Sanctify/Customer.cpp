@@ -10,3 +10,7 @@ Customer::Customer(string un, bool iP)
 	username = un;
 	isPaid = iP;
 }
+
+void Customer::mainMenu()
+{
+}
