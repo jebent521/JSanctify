@@ -1,6 +1,7 @@
 // User.cpp contains the implementation the User class
 #include <iostream>
 #include <vector>
+#include "Customer.h"
 #include "User.h"
 #include "Util.h"
 using namespace std;
@@ -35,16 +36,36 @@ void User::startMenu() {
 void User::login() {
 	cout << "Please enter:" << endl;
 	string userName;
-	userName = inputString("Username: ");
 	string password;
-	password = inputString("Password: ");
-	vector<string> loginCheck = query(2, "select username from users where username = '" + userName + "' and password = '" + password + "' ");
+	
+	do {	//input username and password - check: does user exist?
+		userName = inputString("Username: ");
+		password = inputString("Password: ");
+		vector<string> loginCheck = query(2, "select username from users where username = '" + userName + "' and password = '" + password + "' ");
+		if (loginCheck.empty())
+			cout << "Invalid username or password" << endl;
+		else break;
+	} while (true);
+
+	//send to appropriate main menu (depending on role)
+	//user exists, what type of user is (s)he?
+	if (!query(2, "select username, sub_type from Customer where username = '" + userName + "'").empty()) {
+		//Customer currentUser = Customer(userName, sub_type);
+		//if sub_type = free, bring up free user menu
+		//else bring up paid menu 
+	}
+
+	/*
 	cout << "you entered:" << endl;
 	cout << userName << endl;
 	cout << password << endl;
-
-	//send to appropriate main menu (depending on role)
+	*/
 }
+
+//if (!query(2, "select... from.. where...).empty()) {....}
+//else if (!query(2, "select... from.. where...).empty()) {....}
+//else if (!query(2, "select... from.. where...).empty()) {....}
+//else throw funny error - u dont exist
 
 void User::signUp() {
 	cout << "Thank you for signing up! We are glad to have you on board!\n" << endl;
@@ -100,3 +121,4 @@ void User::employeeMainMenu() {
 void User::adminMainMenu() {
 
 }
+
