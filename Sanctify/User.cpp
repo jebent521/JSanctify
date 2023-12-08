@@ -1,5 +1,6 @@
 // User.cpp contains the implementation the User class
 #include <iostream>
+#include <vector>
 #include "User.h"
 #include "Util.h"
 using namespace std;
@@ -30,19 +31,16 @@ void User::startMenu() {
 
 }
 
-//std::string name;
-//std::string password;
 
 void User::login() {
-	cout << "Please enter:\n" << endl;
-	cout << "name:" << endl;
-	//string name;
-	inputString(name);
-	cout << "password:" << endl;
-	//string password;
-	inputString(password);
-	cout << "you entered\n" << endl;
-	cout << name << endl;
+	cout << "Please enter:" << endl;
+	string userName;
+	userName = inputString("Username: ");
+	string password;
+	password = inputString("Password: ");
+	vector<string> loginCheck = query(2, "select username from users where username = '" + userName + "' and password = '" + password + "' ");
+	cout << "you entered:" << endl;
+	cout << userName << endl;
 	cout << password << endl;
 
 	//send to appropriate main menu (depending on role)
