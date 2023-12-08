@@ -30,11 +30,21 @@ void User::startMenu() {
 
 }
 
+std::string name;
+std::string password;
+
 void User::login() {
 	cout << "Please enter:\n" << endl;
 	cout << "name:" << endl;
-	//cin >> name\n
+	//string name;
+	getString(name);
 	cout << "password:" << endl;
+	//string password;
+	getString(password);
+	cout << "you entered\n" << endl;
+	cout << name << endl;
+	cout << password << endl;
+
 	//send to appropriate main menu (depending on role)
 }
 
