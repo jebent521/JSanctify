@@ -1,13 +1,13 @@
 /* Util.cpp contains the implementation for Util.h */
 
 #include <iostream>
-#include <queue>
 #include <windows.h>
 #include <sqlext.h>
 #include <sqltypes.h>
 #include <sql.h>
 #include <stdexcept>
-#include <vector> // just trust me on this
+#include <vector>
+#include <regex>
 #include "Util.h"
 
 
@@ -131,10 +131,10 @@ bool passwordCheck(string pw) {
     char c;
     for (int i = 0; i < pw.length(); i++) {
         c = pw.at(i);
-        if (c >= 65 && c <= 90) upper = true;
-        else if (c >= 97 && c <= 122) lower = true;
-        else if (c >= 48 && c <= 57) number = true;
-        else if (c == 33 || (c >= 35 && c <= 38) || (c >= 42 && c <= 46) ||
+        if (c >= 65 && c <= 90) upper = true;                               // uppercase
+        else if (c >= 97 && c <= 122) lower = true;                         // lowercase
+        else if (c >= 48 && c <= 57) number = true;                         // numbers
+        else if (c == 33 || (c >= 35 && c <= 38) || (c >= 42 && c <= 46) || // special characters
                 (c >= 58 && c <= 64) || c == 94 || c == 95) special = true;
     }
     return upper && lower && number && special;
@@ -142,7 +142,8 @@ bool passwordCheck(string pw) {
 
 bool isEmail(std::string str)
 {
-    return false;
+    regex re(".+@.+\..+");
+    return regex_match(str, re);
 }
 
 int inputValueBetween(int low, int high)

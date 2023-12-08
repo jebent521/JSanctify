@@ -37,7 +37,7 @@ void User::startMenu() {
 
 
 void User::login() {
-	cout << "Please enter:" << endl;
+	cout << "Please enter your credentials." << endl;
 	string userName;
 	string password;
 	
@@ -87,12 +87,6 @@ void User::login() {
 			}
 		}
 	}
-
-	/*
-	cout << "you entered:" << endl;
-	cout << userName << endl;
-	cout << password << endl;
-	*/
 }
 
 //if (!query(2, "select... from.. where...).empty()) {....}
@@ -117,13 +111,12 @@ void User::signUp() {
 	do {	// input password
 		password = inputString("Password: ");
 		if (passwordCheck(password)) break;	// password is valid
-		else {
-			cout << "  Password must contain at least 8 characters, one uppercase, one lowercase, one special character, one number." << endl;
-		}
+		else cout << "  Password must contain at least 8 characters, one uppercase, one lowercase, one special character, one number." << endl;
 	} while (true);
 	do {	// input email
 		email = inputString("Email address: ");
-		// check if valid email
+		if (isEmail(email)) break;
+		else cout << "  Not a valid email." << endl;
 	} while (true);
 	firstName = inputString("First name: ");
 	lastName = inputString("Last name: ");
