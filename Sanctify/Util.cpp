@@ -7,6 +7,7 @@
 #include <sqltypes.h>
 #include <sql.h>
 #include <stdexcept>
+#include <vector> // just trust me on this
 #include "Util.h"
 
 
@@ -23,25 +24,24 @@ void showSQLError(unsigned int handleType, const SQLHANDLE& handle)
 }
 
 void demoQuery() {
-    queue<string> result;
-    // input: expected # of columns, query as a string
+    vector<string> result;
     result = query(5, "select * from Users");
-    while (!result.empty()) {
-        cout << result.front() << endl;;
-        result.pop();
+    for (string i : result) {
+        cout << i << endl;
     }
 }
 
+
 // don't bother understanding it, just follow the comments to use it
-// CREDIT GOES TO TYLER DEAN FOR WRITING THIS FUNCTION
-queue<string> query(int numOfItems, string inputQuery) {
+// CREDIT GOES TO TYLER DEAN FOR WRITING THIS FUNCTION (but we modified it slightly)
+vector<string> query(int numOfItems, string inputQuery) {
 
     SQLHANDLE SQLEnvHandle = NULL;
     SQLHANDLE SQLConnectionHandle = NULL;
     SQLHANDLE SQLStatementHandle = NULL;
     SQLRETURN retCode = 0;
     const char* SQLQuery = inputQuery.c_str();
-    queue<string> resultQueue;
+    vector<string> result;
 
     do {
         if (SQL_SUCCESS != SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &SQLEnvHandle))
@@ -103,7 +103,7 @@ queue<string> query(int numOfItems, string inputQuery) {
 
                 for (int i = 1; i <= numOfItems; i++) {
                     SQLGetData(SQLStatementHandle, i, SQL_C_DEFAULT, &name, sizeof(name), NULL);
-                    resultQueue.push(name);
+                    result.push_back(name);
                 }
             }
         }
@@ -114,13 +114,27 @@ queue<string> query(int numOfItems, string inputQuery) {
     SQLFreeHandle(SQL_HANDLE_DBC, SQLConnectionHandle);
     SQLFreeHandle(SQL_HANDLE_ENV, SQLEnvHandle);
 
-    return resultQueue;
+    return result;
 }
-
-std::string getString(string input)
+/*  Prompts the user for a string input (e.g. username, password, etc.)
+    May or may not implement validity checking (time-dependent)
+    Returns a valid string  */
+std::string getString(string prompt)
 {
-    cin >> input;
-    //don't forget error checking!!
+    string input;
+    bool isValid = false;
+    do {
+        cout << prompt;
+        cin >> input;
+        /*
+        if (string is valid) {
+            isValid = true;
+        } else {
+            cout << "  Please enter a valid input." << endl;
+        }
+        */
+        isValid = true; // for the time being, while we haven't yet implemented validity-checking
+    } while (!isValid);
     return input;
 }
 

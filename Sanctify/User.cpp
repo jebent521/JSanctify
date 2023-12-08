@@ -50,7 +50,7 @@ void User::login() {
 
 void User::signUp() {
 	cout << "Thank you for signing up! We are glad to have you on board!\n" << endl;
-	cout << "Please enter the following information:\n" << endl;
+	cout << "Please enter the following information:" << endl;
 	cout << "Username:" << endl;
 	//cin >> Username
 	cout << "Password:" << endl;
