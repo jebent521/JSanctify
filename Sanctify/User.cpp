@@ -78,13 +78,15 @@ void User::signUp() {
 	do {	// input username
 		username = inputString("Username: ");
 		vector<string> usernameCheck = query(1, "select username from Users where username = '" + username + "';");
-		if (usernameCheck.empty()) break;
+		if (usernameCheck.empty()) break;	// username isn't taken
 		else cout << "  Username already taken. Please try a different one." << endl;
 	} while (true);
 	do {	// input password
 		password = inputString("Password: ");
-		if (passwordCheck(password)) break;
-		else cout << "  Password must contain...";
+		if (passwordCheck(password)) break;	// password is valid
+		else {
+			cout << "  Password must contain at least 8 characters, one uppercase, one lowercase, one special character, one number." << endl;
+		}
 	} while (true);
 	do {	// input email
 		email = inputString("Email address: ");

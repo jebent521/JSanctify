@@ -116,26 +116,33 @@ vector<string> query(int numOfItems, string inputQuery) {
 
     return result;
 }
-
+/*at least 8 characters,
+		one uppercase, 
+		one lowercase,
+		one special character, 
+		one number*/
 bool passwordCheck(string pw) {
     bool upper = false;
     bool lower = false;
     bool number = false;
     bool special = false;
 
-    if (pw.length() < 12) {
-        return false;
-    }
-
+    if (pw.length() < 8) return false;
+    char c;
     for (int i = 0; i < pw.length(); i++) {
-
-
+        c = pw.at(i);
+        if (c >= 65 && c <= 90) upper = true;
+        else if (c >= 97 && c <= 122) lower = true;
+        else if (c >= 48 && c <= 57) number = true;
+        else if (c == 33 || (c >= 35 && c <= 38) || (c >= 42 && c <= 46) ||
+                (c >= 58 && c <= 64) || c == 94 || c == 95) special = true;
     }
-
-
-
-
     return upper && lower && number && special;
+}
+
+bool isEmail(std::string str)
+{
+    return false;
 }
 
 int inputValueBetween(int low, int high)
