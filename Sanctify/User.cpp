@@ -37,10 +37,10 @@ void User::login() {
 	cout << "Please enter:\n" << endl;
 	cout << "name:" << endl;
 	//string name;
-	getString(name);
+	inputString(name);
 	cout << "password:" << endl;
 	//string password;
-	getString(password);
+	inputString(password);
 	cout << "you entered\n" << endl;
 	cout << name << endl;
 	cout << password << endl;

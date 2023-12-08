@@ -116,28 +116,6 @@ vector<string> query(int numOfItems, string inputQuery) {
 
     return result;
 }
-/*  Prompts the user for a string input (e.g. username, password, etc.)
-    May or may not implement validity checking (time-dependent)
-    Returns a valid string  */
-std::string getString(string prompt)
-{
-    string input;
-    bool isValid = false;
-    do {
-        cout << prompt;
-        cin >> input;
-        /*
-        if (string is valid) {
-            isValid = true;
-        } else {
-            cout << "  Please enter a valid input." << endl;
-        }
-        */
-        isValid = true; // for the time being, while we haven't yet implemented validity-checking
-    } while (!isValid);
-    return input;
-}
-
 
 bool passwordCheck(string pw) {
     bool upper = false;
@@ -190,4 +168,24 @@ int inputValueBetween(int low, int high)
     return intput;
 }
 
-
+/*  Prompts the user for a string input (e.g. username, password, etc.)
+    May or may not implement validity checking (time-dependent)
+    Returns a valid string  */
+std::string inputString(string prompt)
+{
+    string input;
+    bool isValid = false;
+    do {
+        cout << prompt;
+        cin >> input;
+        /*
+        if (string is valid) {
+            isValid = true;
+        } else {
+            cout << "  Please enter a valid input." << endl;
+        }
+        */
+        isValid = true; // for the time being, while we haven't yet implemented validity-checking
+    } while (!isValid);
+    return input;
+}
