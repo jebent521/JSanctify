@@ -136,4 +136,9 @@ void User::signUp() {
 		confirmation = inputString("Is this correct? (y/n): ");
 		confirmed = (confirmation.compare("y") == 0);
 	} while (!confirmed);
+	cout << "Creating account..." << endl;
+	query(0, "insert into Users values ('" + username + "', '" + password + "', '" + email + "', '" + firstName + "', '" + lastName + "');");
+	query(0, "insert into Customer values ('" + username + "', '" + ((isPaid ? "paid" : "free")) + "');");
+	cout << "Account created!" << endl;
+	login();
 }
