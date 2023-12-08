@@ -26,3 +26,5 @@ bool passwordCheck(std::string pw);
 	It reads user's input, checks if it is valid, and returns the selection as an integer.
 	Use this so you don't have to write all new code.*/
 int inputValueBetween(int low, int high);
+
+std::string getString(std::string input);

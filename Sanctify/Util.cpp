@@ -117,6 +117,14 @@ vector<string> query(int numOfItems, string inputQuery) {
     return result;
 }
 
+std::string getString(string input)
+{
+    cin >> input;
+    //don't forget error checking!!
+    return input;
+}
+
+
 bool passwordCheck(string pw) {
     bool upper = false;
     bool lower = false;
@@ -167,3 +175,5 @@ int inputValueBetween(int low, int high)
     // input is valid, so return it
     return intput;
 }
+
+
