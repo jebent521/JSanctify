@@ -1,5 +1,6 @@
 // User.cpp contains the implementation the User class
 #include <iostream>
+#include <vector>
 #include "User.h"
 #include "Util.h"
 using namespace std;
@@ -37,10 +38,10 @@ void User::login() {
 	cout << "Please enter:\n" << endl;
 	cout << "name:" << endl;
 	//string name;
-	inputString(name);
+	string name = inputString("name");
 	cout << "password:" << endl;
 	//string password;
-	inputString(password);
+	string password = inputString("password");
 	cout << "you entered\n" << endl;
 	cout << name << endl;
 	cout << password << endl;
@@ -51,16 +52,30 @@ void User::login() {
 void User::signUp() {
 	cout << "Thank you for signing up! We are glad to have you on board!\n" << endl;
 	cout << "Please enter the following information:" << endl;
-	cout << "Username:" << endl;
-	//cin >> Username
-	cout << "Password:" << endl;
-	//cin >> Password
-	cout << "Email:" << endl;
-	//cin >> Email
-	cout << "First Name:" << endl;
-	//cin << First Name:
-	cout << "Last Name:" << endl;
-	//cin << Last Name:
+	string username;
+	string password;
+	string email;
+	string firstName;
+	string lastName;
+	do {	// input username
+		username = inputString("Username: ");
+		vector<string> usernameCheck = query(1, "select username from Users where username = '" + username + "';");
+		if (usernameCheck.empty()) break;
+		else cout << "  Username already taken. Please try a different one." << endl;
+	} while (true);
+	do {	// input password
+		password = inputString("Password: ");
+		if (passwordCheck(password)) break;
+		else cout << "  Password must contain...";
+	} while (true);
+	do {	// input email
+		email = inputString("Email address: ");
+		// check if valid email
+	} while (true);
+	firstName = inputString("First name: ");
+	lastName = inputString("Last name: ");
+
+
 }
 
 void User::forgotPassword() {
