@@ -30,8 +30,8 @@ void User::startMenu() {
 
 }
 
-std::string name;
-std::string password;
+//std::string name;
+//std::string password;
 
 void User::login() {
 	cout << "Please enter:\n" << endl;
