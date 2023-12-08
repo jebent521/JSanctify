@@ -40,14 +40,18 @@ void User::login() {
 	cout << "Please enter your credentials." << endl;
 	string userName;
 	string password;
+	string firstName;
 	
 	do {	//input username and password - check: does user exist?
 		userName = inputString("Username: ");
 		password = inputString("Password: ");
-		vector<string> loginCheck = query(2, "select username from users where username = '" + userName + "' and password = '" + password + "' ");
+		vector<string> loginCheck = query(3, "select username, password, first_name from Users where username = '" + userName + "' and password = '" + password + "' ");
 		if (loginCheck.empty())
 			cout << "Invalid username or password" << endl;
-		else break;
+		else {
+			firstName = loginCheck.at(2);
+			break;
+		}
 	} while (true);
 
 	//send to appropriate main menu (depending on role)
@@ -55,11 +59,11 @@ void User::login() {
 	vector<string> userQuery = query(2, "select username, sub_type from Customer where username = '" + userName + "'");
 	if (!userQuery.empty()) {	// if user is in customer table
 		if (userQuery.at(1).compare("paid") == 0) {	// and sub_type == paid
-			Customer currentUser = Customer(userName, 1);	// create a paid customer
+			Customer currentUser = Customer(userName, firstName, 1);	// create a paid customer
 			currentUser.mainMenu();
 		}
 		else {
-			Customer currentUser = Customer(userName, 0);	// otherwise create a free customer
+			Customer currentUser = Customer(userName, firstName, 0);	// otherwise create a free customer
 			currentUser.mainMenu();
 		}
 	}
