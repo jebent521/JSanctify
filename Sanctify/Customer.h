@@ -4,7 +4,8 @@
 #include "User.h"
 class Customer : public User {
 public:
-	
+	Customer(std::string username, bool isPaid);
 private:
-
+	std::string username;
+	bool isPaid;
 };
