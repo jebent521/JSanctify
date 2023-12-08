@@ -22,6 +22,10 @@ void demoQuery();
 		one number	*/
 bool passwordCheck(std::string pw);
 
+/*	Checks if the input string is an email.
+	Returns true if it is, returns false if otherwise	*/
+bool isEmail(std::string str);
+
 /*	This is a quick way of getting user input for integers
 	It reads user's input, checks if it is valid, and returns the selection as an integer.
 	Use this so you don't have to write all new code.*/
