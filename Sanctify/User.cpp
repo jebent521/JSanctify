@@ -30,16 +30,16 @@ void User::startMenu() {
 
 }
 
-std::string name;
-std::string password;
+//std::string name;
+//std::string password;
 
 void User::login() {
 	cout << "Please enter:\n" << endl;
 	cout << "name:" << endl;
-	//string name;
+	string name;
 	getString(name);
 	cout << "password:" << endl;
-	//string password;
+	string password;
 	getString(password);
 	cout << "you entered\n" << endl;
 	cout << name << endl;
