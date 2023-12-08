@@ -89,11 +89,6 @@ void User::login() {
 	}
 }
 
-//if (!query(2, "select... from.. where...).empty()) {....}
-//else if (!query(2, "select... from.. where...).empty()) {....}
-//else if (!query(2, "select... from.. where...).empty()) {....}
-//else throw funny error - u dont exist
-
 void User::signUp() {
 	cout << "Thank you for signing up! We are glad to have you on board!\n" << endl;
 	cout << "Please enter the following information:" << endl;
@@ -102,24 +97,43 @@ void User::signUp() {
 	string email;
 	string firstName;
 	string lastName;
-	do {	// input username
-		username = inputString("Username: ");
-		vector<string> usernameCheck = query(1, "select username from Users where username = '" + username + "';");
-		if (usernameCheck.empty()) break;	// username isn't taken
-		else cout << "  Username already taken. Please try a different one." << endl;
-	} while (true);
-	do {	// input password
-		password = inputString("Password: ");
-		if (passwordCheck(password)) break;	// password is valid
-		else cout << "  Password must contain at least 8 characters, one uppercase, one lowercase, one special character, one number." << endl;
-	} while (true);
-	do {	// input email
-		email = inputString("Email address: ");
-		if (isEmail(email)) break;
-		else cout << "  Not a valid email." << endl;
-	} while (true);
-	firstName = inputString("First name: ");
-	lastName = inputString("Last name: ");
+	int paidSelection;
+	bool isPaid = false;
+	string confirmation;
+	bool confirmed = false;
+	do {
+		do {	// input username
+			username = inputString("Username: ");
+			vector<string> usernameCheck = query(1, "select username from Users where username = '" + username + "';");
+			if (usernameCheck.empty()) break;	// username isn't taken
+			else cout << "  Username already taken. Please try a different one." << endl;
+		} while (true);
+		do {	// input password
+			password = inputString("Password: ");
+			if (passwordCheck(password)) break;	// password is valid
+			else cout << "  Password must contain at least 8 characters, one uppercase, one lowercase, one special character, one number." << endl;
+		} while (true);
+		do {	// input email
+			email = inputString("Email address: ");
+			if (isEmail(email)) break;
+			else cout << "  Not a valid email." << endl;
+		} while (true);
+		firstName = inputString("First name: ");	// input first name
+		lastName = inputString("Last name: ");		// input last name
+		cout << "Would you like to sign up for Sanctify Free or Sanctify Plus ($99.99/mo)?" << endl;
+		cout << "  1) Sanctify Free" << endl;
+		cout << "  2) Sanctify Plus" << endl;
+		paidSelection = inputValueBetween(1,2);
+		isPaid = (paidSelection == 2);
 
-
+		cout << "You entered: " << endl;
+		cout << "Username:\t\t" <<			username << endl;
+		cout << "Password:\t\t" <<			password << endl;
+		cout << "Email address:\t\t" <<		email << endl;
+		cout << "First name:\t\t" <<		firstName << endl;
+		cout << "Last name:\t\t" <<			lastName << endl;
+		cout << "Subscription Type:\t" <<	(isPaid ? "Paid" : "Free") << endl;
+		confirmation = inputString("Is this correct? (y/n): ");
+		confirmed = (confirmation.compare("y") == 0);
+	} while (!confirmed);
 }

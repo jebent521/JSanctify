@@ -163,7 +163,7 @@ int inputValueBetween(int low, int high)
         }
         catch (const std::invalid_argument&)
         {                           // if unsuccessful, yell at user and try again
-            cout << "  Invalid input. Please enter a number between " << low << " and " << high << "." << endl;
+            cout << "  Invalid input. Please enter a number between " << low << " and " << high << "(inclusive)." << endl;
             continue;
         }
         if (intput >= low && intput <= high)
