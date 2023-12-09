@@ -172,6 +172,7 @@ void User::searchContent() {
 	string search;
 	do { //searches for matches based on user input
 		search = inputString("Search: ");
+		if (search.compare("back") == 0) return;
 		vector<string> searchQuery = query(2, "select content_id, content_name from content where content_name like '%" + search + "%'");
 		int vectorSize = searchQuery.size();
 		if (searchQuery.empty())
@@ -180,7 +181,7 @@ void User::searchContent() {
 			for (int i = 0; i < vectorSize; i += 2) {
 				int number = (i / 2) + 1;
 				string name = searchQuery.at(i);
-				cout << number << "	" << name << endl;
+				cout << number << ") " << name << endl;
 			}
 
 		}
