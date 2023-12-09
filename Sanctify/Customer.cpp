@@ -11,7 +11,6 @@ Customer::Customer(string uid, string name, bool iP)
 	firstName = name;
 	isPaid = iP;
 }
-
 void Customer::mainMenu()
 {
 	cout << "Hello " << firstName << "! Welcome back to Sanctify." << endl;
