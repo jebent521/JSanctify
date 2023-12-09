@@ -22,6 +22,28 @@ void Customer::mainMenu()
 	cout << "  4) View your profile" << endl;
 	cout << "  5) Logout" << endl;
 	cout << "  6) Quit" << endl;
-	int selection = inputValueBetween(1, 6);
-	cout << "Sorry, we haven't implemented that option yet. Bye!" << endl;
+	switch (inputValueBetween(1,6))
+	{
+	case 1:
+		browseContent();
+		break;
+	case 2:
+		viewPraylists();
+		break;
+	case 3:
+		searchContent();
+		break;
+	case 4:
+		viewProfile();
+		break;
+	case 5:
+		logout();
+		break;
+	case 6:
+		exit(0);
+		break;
+	default:
+		cout << "How did we get here?!" << endl;
+		throw runtime_error("Invalid selection. You've broken out of the matrix");
+	}
 }

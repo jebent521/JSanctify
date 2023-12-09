@@ -71,7 +71,7 @@ void User::login() {
 		userQuery = query(2, "select username, role from Employee where username = '" + userName + "'");
 		if (!userQuery.empty()) {	// if user is in Employee table
 			if (userQuery.at(1).compare("admin") == 0) {	// and role == admin
-				Admin currentUser = Admin(userName);	// create an admin
+				Admin currentUser = Admin(userName, firstName);	// create an admin
 				currentUser.mainMenu();
 			}
 			else {
@@ -82,7 +82,7 @@ void User::login() {
 		else {
 			userQuery = query(1, "select username from ContentCreator where username = '" + userName + "'");
 			if (!userQuery.empty()) {	// if user is in ContentCreator table
-				ContentCreator currentUser = ContentCreator(userName);	// create a ContentCreator
+				ContentCreator currentUser = ContentCreator(userName, firstName);	// create a ContentCreator
 				currentUser.mainMenu();
 			}
 			else {

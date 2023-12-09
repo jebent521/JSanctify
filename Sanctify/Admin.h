@@ -1,11 +1,12 @@
 #pragma once
 #include <string>
-#include "User.h"
+#include "Employee.h"
 
 class Admin : public Employee {
 public:
-	Admin(std::string un);
+	Admin(std::string un, std::string fn);
 	void mainMenu();
 private:
 	std::string username;
+	std::string firstName;
 };
