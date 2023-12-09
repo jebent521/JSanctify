@@ -3,7 +3,7 @@
 #include "Employee.h"
 #include "Util.h"
 using namespace std;
-Employee::Employee(std::string un)
+Employee::Employee(string un, string fn)
 {
 }
 

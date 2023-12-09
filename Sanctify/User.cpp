@@ -71,11 +71,11 @@ void User::login() {
 		userQuery = query(2, "select username, role from Employee where username = '" + userName + "'");
 		if (!userQuery.empty()) {	// if user is in Employee table
 			if (userQuery.at(1).compare("admin") == 0) {	// and role == admin
-				Admin currentUser = Admin(userName);	// create an admin
+				Admin currentUser = Admin(userName, firstName);	// create an admin
 				currentUser.mainMenu();
 			}
 			else {
-				Employee currentUser = Employee(userName);	// otherwise create a regular employee
+				Employee currentUser = Employee(userName, firstName);	// otherwise create a regular employee
 				currentUser.mainMenu();
 			}
 		}
