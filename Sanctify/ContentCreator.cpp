@@ -23,22 +23,18 @@ void ContentCreator::mainMenu()
 	cout << " 7) Logout" << endl; 
 	cout << " 8) Quit" << endl; 
 	cout << "-----------------------------------" << endl;
-	int selection = inputValueBetween(1, 8); 
-	cout << "Sorry, we haven't implemented that option yet. Bye!" << endl;
-
-	/*
 	switch (inputValueBetween(1, 8)) {
 	case 1: 
 		browseContent(); 
 		break; 
 	case 2: 
-		viewPraylist(); 
+		viewPraylists(); 
 		break; 
 	case 3: 
-		search(); 
+		searchContent(); 
 		break; 
 	case 4: 
-		upload(); 
+		uploadContent(); 
 		break;
 	case 5: 
 		viewUploadedContent(); 
@@ -49,7 +45,7 @@ void ContentCreator::mainMenu()
 		logout(); 
 		break; 
 	case 8: 
-		quit(); 
+		exit(0); // quit 
 		break; 
 	default: 
 		throw runtime_error("How did we get here?!?!\n"); 
@@ -65,6 +61,4 @@ void ContentCreator::upload() {
 void ContentCreator::viewUploadedContent(); {
 
 }
-
-*/
 
