@@ -35,3 +35,6 @@ int inputValueBetween(int low, int high);
 	It reads user's input, checks if it is valid, and returns the selection as an strings.
 	Use this so you don't have to write all new code.*/
 std::string inputString(std::string prompt);
+
+//list all content and allows user to select content to do something with it
+void contentOptions(std::string option);
