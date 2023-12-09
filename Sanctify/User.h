@@ -3,6 +3,8 @@
 
 class User {
 public:
+	User();
+	User(std::string un, std::string fn);
 	void startMenu();
 	void login();
 	void signUp();
@@ -12,4 +14,7 @@ public:
 	void searchContent();
 	void viewProfile();
 	void logout();
+protected:
+	std::string username;
+	std::string firstName;
 };

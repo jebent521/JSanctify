@@ -7,7 +7,6 @@ public:
 	Customer(std::string username, std::string firstName, bool isPaid);
 	void mainMenu();
 private:
-	std::string username;
-	std::string firstName;
+
 	bool isPaid;
 };

@@ -10,9 +10,4 @@ public:
 	void viewEmployee(); 
 	void addEmployee(); 
 	void addContentCreator(); 
-
-
-private:
-	std::string username;
-	std::string firstName;
 };

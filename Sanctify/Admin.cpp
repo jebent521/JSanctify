@@ -6,8 +6,6 @@ using namespace std;
 
 Admin::Admin(string un, string fn) : Employee(un, fn)
 {
-	username = un; 
-	firstName = fn; 
 }
 
 void Admin::mainMenu()
