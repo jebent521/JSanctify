@@ -147,22 +147,32 @@ void User::signUp() {
 	login();
 }
 
-void User::browseContent()
-{
+void User::browseContent() {
+	//user can view all categories
+	vector<string> viewCategories = query(1, "select * from category");
 }
 
-void User::viewPraylists()
-{
+void User::viewPraylists() {
+
 }
 
-void User::searchContent()
-{
-}
+void User::searchContent() {
+	//search by name
+	cout << "Type in the name of what you're searching for." << endl;
+	string search;
+	do { //searches for matches based on user input
+		search = inputString("Search: ");
+		vector<string> searchQuery = query(2, "select content_id, content_name from content where content_name like '%" + search + "%'");
+		int vectorSize = searchQuery.size();
+		if (searchQuery.empty())
+			cout << "Sorry no results :(" << endl;
+		else {
+			for (int i = 0; i < vectorSize; i += 2) {
+				int number = (i / 2) + 1;
+				string name = searchQuery.at(i);
+				cout << number << "	" << name << endl;
+			}
 
-void User::viewProfile()
-{
-}
-
-void User::logout()
-{
+		}
+	} while (true);
 }
