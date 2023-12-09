@@ -20,29 +20,29 @@ User::User(std::string un, std::string fn)
 }
 
 void User::startMenu() {
-	cout << "Welcome to Sanctify!\n" << endl;
-	cout << "What would you like to do?" << endl;
-	cout << "  1) Login" << endl;
-	cout << "  2) Sign up" << endl;
-	cout << "  3) Exit" << endl;
-	cout << "--------------------------" << endl;
-	switch (inputValueBetween(1,3))
-	{
-	case 1:
-		login();
-		break;
-	case 2:
-		signUp();
-		break;
-	case 3:
-		cout << "Hope to see you soon!" << endl;
-		exit(0);
-		break;
-	default:
-		throw runtime_error("How did we get here?!?!\n");
-		break;
-	}
-
+	do {
+		cout << "Welcome to Sanctify!" << endl;
+		cout << "What would you like to do?" << endl;
+		cout << "  1) Login" << endl;
+		cout << "  2) Sign up" << endl;
+		cout << "  3) Exit" << endl;
+		switch (inputValueBetween(1, 3))
+		{
+		case 1:
+			login();
+			break;
+		case 2:
+			signUp();
+			break;
+		case 3:
+			cout << "Hope to see you soon!" << endl;
+			exit(0);
+			break;
+		default:
+			throw runtime_error("How did we get here?!?!\n");
+			break;
+		}
+	} while (true);
 }
 
 
@@ -179,7 +179,7 @@ void User::searchContent() {
 		vector<string> searchQuery = query(2, "select content_id, content_name from content where content_name like '%" + search + "%'");
 		int vectorSize = searchQuery.size();
 		if (searchQuery.empty()) //no results, nothing displays
-			cout << "Sorry no results :(" << endl;
+			cout << "  Sorry no results :(" << endl;
 		else { //prints matches to search 
 			for (int i = 0; i < vectorSize; i += 2) {
 				int number = (i / 2) + 1;
@@ -198,5 +198,7 @@ void User::viewProfile()
 
 void User::logout()
 {
-	notImplemented();
+	username = "";
+	firstName = "";
+	cout << "Logging you out...\n" << endl;
 }

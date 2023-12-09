@@ -13,12 +13,12 @@ Customer::Customer(string uid, string name, bool iP)
 }
 void Customer::mainMenu()
 {
-	cout << "Hello " << firstName << "! Welcome back to Sanctify." << endl;
-	cout << "You are a Sanctify " << (isPaid ? "Paid" : "Free") << " member" << endl;
+	cout << "\nHello " << firstName << "! Welcome back to Sanctify." << endl;
+	cout << "You are a Sanctify " << (isPaid ? "Paid" : "Free") << " member." << endl;
 	bool exiting = false;
 	do 
 	{
-		cout << "What would you like to do?" << endl;
+		cout << "\nWhat would you like to do?" << endl;
 		cout << "  1) Browse content by category" << endl;
 		cout << "  2) View your praylists" << endl;
 		cout << "  3) Search content" << endl;

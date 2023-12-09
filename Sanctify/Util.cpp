@@ -9,9 +9,6 @@
 #include <vector>
 #include <regex>
 #include "Util.h"
-
-
-
 using namespace std;
 
 void showSQLError(unsigned int handleType, const SQLHANDLE& handle)
@@ -154,9 +151,10 @@ int inputValueBetween(int low, int high)
     }
     int intput;
     string input;
+    cout << "--------------------------" << endl;
     do {
         cout << "Selection: ";      // prompt user for input
-        cin >> input;
+        getline(cin, input);
         try                         // try to convert it to an integer
         {
             intput = stoi(input);
@@ -185,7 +183,7 @@ std::string inputString(string prompt)
     bool isValid = false;
     do {
         cout << prompt;
-        cin >> input;
+        getline(cin, input);
         /*
         if (string is valid) {
             isValid = true;
@@ -203,5 +201,5 @@ void contentOptions(string option) {
 }
 
 void notImplemented() {
-    cout << "Sorry, this feature is not implemented yet." << endl;
+    cout << "  Sorry, this feature is not implemented yet." << endl;
 }

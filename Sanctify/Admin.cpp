@@ -10,12 +10,12 @@ Admin::Admin(string un, string fn) : Employee(un, fn)
 
 void Admin::mainMenu()
 {
-	cout << "Hello" << firstName << "! Welcome back to Sanctify." << endl;
+	cout << "\nHello" << firstName << "! Welcome back to Sanctify." << endl;
 	cout << "You are an admin." << endl;
 	bool exiting = false;
 	do 
 	{
-		cout << "What would you like to do?" << endl;
+		cout << "\nWhat would you like to do?" << endl;
 		cout << " 1) Browse content by category" << endl;
 		cout << " 2) View your praylists" << endl;
 		cout << " 3) Search content" << endl;
