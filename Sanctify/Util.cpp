@@ -201,3 +201,7 @@ std::string inputString(string prompt)
 void contentOptions(string option) {
 
 }
+
+void notImplemented() {
+    cout << "Sorry, this feature is not implemented yet." << endl;
+}

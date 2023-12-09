@@ -38,3 +38,5 @@ std::string inputString(std::string prompt);
 
 //list all content and allows user to select content to do something with it
 void contentOptions(std::string option);
+
+void notImplemented();
