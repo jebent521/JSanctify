@@ -7,6 +7,8 @@ class ContentCreator : public User {
 public:
 	ContentCreator(std::string un, std::string name);
 	void mainMenu();
+	void uploadContent(); 
+	void viewUploadedContent(); 
 private:
 	std::string username;
 	std::string firstName; 

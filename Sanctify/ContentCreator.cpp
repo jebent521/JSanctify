@@ -41,6 +41,7 @@ void ContentCreator::mainMenu()
 		break;
 	case 6: 
 		viewProfile(); 
+		break; 
 	case 7: 
 		logout(); 
 		break; 
@@ -54,11 +55,11 @@ void ContentCreator::mainMenu()
 
 }
 
-void ContentCreator::upload() {
+void ContentCreator::uploadContent() {
 
 }
 
-void ContentCreator::viewUploadedContent(); {
+void ContentCreator::viewUploadedContent() {
 
 }
 
