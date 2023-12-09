@@ -6,7 +6,8 @@ class Admin : public Employee {
 public:
 	Admin(std::string un, std::string fn);
 	void mainMenu();
-private:
-	std::string username;
-	std::string firstName;
+	void viewUser(); 
+	void viewEmployee(); 
+	void addEmployee(); 
+	void addContentCreator(); 
 };

@@ -10,6 +10,5 @@ public:
 	void mainMenu();
 	
 private:
-	std::string username;
-	std::string firstName;
+
 };

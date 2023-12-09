@@ -10,6 +10,5 @@ public:
 	void uploadContent(); 
 	void viewUploadedContent(); 
 private:
-	std::string username;
-	std::string firstName; 
+
 };

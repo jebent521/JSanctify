@@ -9,6 +9,16 @@
 #include "ContentCreator.h"
 using namespace std;
 
+User::User()
+{
+}
+
+User::User(std::string un, std::string fn)
+{
+	username = un;
+	firstName = fn;
+}
+
 void User::startMenu() {
 	cout << "Welcome to Sanctify!\n" << endl;
 	cout << "What would you like to do?" << endl;
@@ -179,3 +189,10 @@ void User::searchContent() {
 	} while (true);
 }
 
+void User::viewProfile()
+{
+}
+
+void User::logout()
+{
+}
