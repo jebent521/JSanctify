@@ -163,6 +163,8 @@ void User::browseContent() {
 }
 
 void User::viewPraylists() {
+	//user can view all their praylists
+	vector<string> viewPraylists = query(2, "select praylist_name, description from praylist");
 
 }
 
@@ -175,15 +177,15 @@ void User::searchContent() {
 		if (search.compare("back") == 0) return;
 		vector<string> searchQuery = query(2, "select content_id, content_name from content where content_name like '%" + search + "%'");
 		int vectorSize = searchQuery.size();
-		if (searchQuery.empty())
+		if (searchQuery.empty()) //no results, nothing displays
 			cout << "Sorry no results :(" << endl;
-		else {
+		else { //prints matches to search 
 			for (int i = 0; i < vectorSize; i += 2) {
 				int number = (i / 2) + 1;
 				string name = searchQuery.at(i);
 				cout << number << ") " << name << endl;
 			}
-
+			int selection = inputValueBetween(1, vectorSize);
 		}
 	} while (true);
 }

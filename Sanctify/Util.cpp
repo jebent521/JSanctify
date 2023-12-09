@@ -197,3 +197,7 @@ std::string inputString(string prompt)
     } while (!isValid);
     return input;
 }
+
+void contentOptions(string option) {
+
+}
