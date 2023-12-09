@@ -12,10 +12,11 @@ ContentCreator::ContentCreator(string un, string name)
 
 void ContentCreator::mainMenu()
 {
+	cout << "Hello " << firstName << "! Welcome back to Sanctify." << endl;
+	cout << "You are a content creator" << endl;
 	bool exiting = false;
 	do 
 	{
-		cout << "Hello " << firstName << "! Welcome back to Sanctify." << endl;
 		cout << "What would you like to do?" << endl;
 		cout << " 1) Browse content by category" << endl;
 		cout << " 2) View your praylists" << endl;

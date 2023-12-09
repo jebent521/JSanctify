@@ -160,17 +160,18 @@ void User::signUp() {
 void User::browseContent() {
 	//user can view all categories
 	vector<string> viewCategories = query(1, "select * from category");
+	notImplemented();
 }
 
 void User::viewPraylists() {
 	//user can view all their praylists
 	vector<string> viewPraylists = query(2, "select praylist_name, description from praylist");
-
+	notImplemented();
 }
 
 void User::searchContent() {
 	//search by name
-	cout << "Type in the name of what you're searching for." << endl;
+	cout << "Type in the name of what you're searching for (or 'back' to go back)." << endl;
 	string search;
 	do { //searches for matches based on user input
 		search = inputString("Search: ");
@@ -192,8 +193,10 @@ void User::searchContent() {
 
 void User::viewProfile()
 {
+	notImplemented();
 }
 
 void User::logout()
 {
+	notImplemented();
 }

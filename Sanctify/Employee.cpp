@@ -7,10 +7,11 @@ Employee::Employee(string un, string fn) : User(un, fn) {}
 
 void Employee::mainMenu()
 {
+	cout << "Hello " << firstName << "! Welcome back to Sanctify." << endl;
+	cout << "You are an employee" << endl;
 	bool exiting = false;
 	do {
-		cout << "Hello " << firstName << "! Welcome back to Sanctify." << endl;
-		cout << "You are an employee" << endl;
+
 		cout << "What would you like to do?" << endl;
 		cout << "  1) Browse content by category" << endl;
 		cout << "  2) View your praylists" << endl;
