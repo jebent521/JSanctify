@@ -82,7 +82,7 @@ void User::login() {
 		else {
 			userQuery = query(1, "select username from ContentCreator where username = '" + userName + "'");
 			if (!userQuery.empty()) {	// if user is in ContentCreator table
-				ContentCreator currentUser = ContentCreator(userName);	// create a ContentCreator
+				ContentCreator currentUser = ContentCreator(userName, firstName);	// create a ContentCreator
 				currentUser.mainMenu();
 			}
 			else {
