@@ -146,3 +146,23 @@ void User::signUp() {
 	cout << "Account created!" << endl;
 	login();
 }
+
+void User::browseContent()
+{
+}
+
+void User::viewPraylists()
+{
+}
+
+void User::searchContent()
+{
+}
+
+void User::viewProfile()
+{
+}
+
+void User::logout()
+{
+}
