@@ -8,7 +8,6 @@ class Employee : public User {
 public:
 	Employee(std::string un, std::string name);
 	void mainMenu();
-	
-private:
-
+	void viewUserProfiles();
+	void addContentCreator();
 };
