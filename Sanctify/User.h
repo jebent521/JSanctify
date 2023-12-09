@@ -7,4 +7,9 @@ public:
 	void login();
 	void signUp();
 	//void forgotPassword(); // if we get around to it
+	void browseContent();
+	void viewPraylists();
+	void searchContent();
+	void viewProfile();
+	void logout();
 };

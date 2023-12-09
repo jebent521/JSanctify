@@ -75,7 +75,7 @@ void User::login() {
 				currentUser.mainMenu();
 			}
 			else {
-				Employee currentUser = Employee(userName);	// otherwise create a regular employee
+				Employee currentUser = Employee(userName, firstName);	// otherwise create a regular employee
 				currentUser.mainMenu();
 			}
 		}
@@ -145,4 +145,34 @@ void User::signUp() {
 	query(0, "insert into Customer values ('" + username + "', '" + ((isPaid ? "paid" : "free")) + "');");
 	cout << "Account created!" << endl;
 	login();
+}
+
+void User::browseContent() {
+	//user can view all categories
+	vector<string> viewCategories = query(1, "select * from category");
+}
+
+void User::viewPraylists() {
+
+}
+
+void User::searchContent() {
+	//search by name
+	cout << "Type in the name of what you're searching for." << endl;
+	string search;
+	do { //searches for matches based on user input
+		search = inputString("Search: ");
+		vector<string> searchQuery = query(2, "select content_id, content_name from content where content_name like '%" + search + "%'");
+		int vectorSize = searchQuery.size();
+		if (searchQuery.empty())
+			cout << "Sorry no results :(" << endl;
+		else {
+			for (int i = 0; i < vectorSize; i += 2) {
+				int number = (i / 2) + 1;
+				string name = searchQuery.at(i);
+				cout << number << "	" << name << endl;
+			}
+
+		}
+	} while (true);
 }

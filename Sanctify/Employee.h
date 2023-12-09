@@ -6,8 +6,10 @@
 
 class Employee : public User {
 public:
-	Employee(std::string un);
+	Employee(std::string un, std::string name);
 	void mainMenu();
+	
 private:
 	std::string username;
+	std::string firstName;
 };
