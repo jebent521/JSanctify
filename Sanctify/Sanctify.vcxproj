@@ -127,6 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Admin.cpp" />
+    <ClCompile Include="ContentCreator.cpp" />
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="Sanctify.cpp" />
@@ -137,6 +139,8 @@
     <Text Include="DBInstantiation.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Admin.h" />
+    <ClInclude Include="ContentCreator.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="User.h" />

@@ -1,11 +1,13 @@
 /* Util.cpp contains the implementation for Util.h */
 
 #include <iostream>
-#include <queue>
 #include <windows.h>
 #include <sqlext.h>
 #include <sqltypes.h>
 #include <sql.h>
+#include <stdexcept>
+#include <vector>
+#include <regex>
 #include "Util.h"
 
 
@@ -22,25 +24,24 @@ void showSQLError(unsigned int handleType, const SQLHANDLE& handle)
 }
 
 void demoQuery() {
-    queue<string> result;
-    // input: expected # of columns, query as a string
+    vector<string> result;
     result = query(5, "select * from Users");
-    while (!result.empty()) {
-        cout << result.front() << endl;;
-        result.pop();
+    for (string i : result) {
+        cout << i << endl;
     }
 }
 
+
 // don't bother understanding it, just follow the comments to use it
-// CREDIT GOES TO TYLER DEAN FOR WRITING THIS FUNCTION
-queue<string> query(int numOfItems, string inputQuery) {
+// CREDIT GOES TO TYLER DEAN FOR WRITING THIS FUNCTION (but we modified it slightly)
+vector<string> query(int numOfItems, string inputQuery) {
 
     SQLHANDLE SQLEnvHandle = NULL;
     SQLHANDLE SQLConnectionHandle = NULL;
     SQLHANDLE SQLStatementHandle = NULL;
     SQLRETURN retCode = 0;
     const char* SQLQuery = inputQuery.c_str();
-    queue<string> resultQueue;
+    vector<string> result;
 
     do {
         if (SQL_SUCCESS != SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &SQLEnvHandle))
@@ -102,7 +103,7 @@ queue<string> query(int numOfItems, string inputQuery) {
 
                 for (int i = 1; i <= numOfItems; i++) {
                     SQLGetData(SQLStatementHandle, i, SQL_C_DEFAULT, &name, sizeof(name), NULL);
-                    resultQueue.push(name);
+                    result.push_back(name);
                 }
             }
         }
@@ -113,5 +114,86 @@ queue<string> query(int numOfItems, string inputQuery) {
     SQLFreeHandle(SQL_HANDLE_DBC, SQLConnectionHandle);
     SQLFreeHandle(SQL_HANDLE_ENV, SQLEnvHandle);
 
-    return resultQueue;
+    return result;
+}
+/*at least 8 characters,
+		one uppercase, 
+		one lowercase,
+		one special character, 
+		one number*/
+bool passwordCheck(string pw) {
+    bool upper = false;
+    bool lower = false;
+    bool number = false;
+    bool special = false;
+
+    if (pw.length() < 8) return false;
+    char c;
+    for (int i = 0; i < pw.length(); i++) {
+        c = pw.at(i);
+        if (c >= 65 && c <= 90) upper = true;                               // uppercase
+        else if (c >= 97 && c <= 122) lower = true;                         // lowercase
+        else if (c >= 48 && c <= 57) number = true;                         // numbers
+        else if (c == 33 || (c >= 35 && c <= 38) || (c >= 42 && c <= 46) || // special characters
+                (c >= 58 && c <= 64) || c == 94 || c == 95) special = true;
+    }
+    return upper && lower && number && special;
+}
+
+bool isEmail(std::string str)
+{
+    regex re(".+@.+\..+");
+    return regex_match(str, re);
+}
+
+int inputValueBetween(int low, int high)
+{
+    // check if arguments are valid
+    if (low > high) {
+        throw invalid_argument("low must be less than high");
+    }
+    int intput;
+    string input;
+    do {
+        cout << "Selection: ";      // prompt user for input
+        cin >> input;
+        try                         // try to convert it to an integer
+        {
+            intput = stoi(input);
+        }
+        catch (const std::invalid_argument&)
+        {                           // if unsuccessful, yell at user and try again
+            cout << "  Invalid input. Please enter a number between " << low << " and " << high << "(inclusive)." << endl;
+            continue;
+        }
+        if (intput >= low && intput <= high)
+        {                           // if successful and input is within range, get out of the loop 
+            break;
+        }
+        cout << "  Invalid input. Please enter a number between " << low << " and " << high << " (inclusive)." << endl;
+    } while (true);                 // continue looping until input is valid
+    // input is valid, so return it
+    return intput;
+}
+
+/*  Prompts the user for a string input (e.g. username, password, etc.)
+    May or may not implement validity checking (time-dependent)
+    Returns a valid string  */
+std::string inputString(string prompt)
+{
+    string input;
+    bool isValid = false;
+    do {
+        cout << prompt;
+        cin >> input;
+        /*
+        if (string is valid) {
+            isValid = true;
+        } else {
+            cout << "  Please enter a valid input." << endl;
+        }
+        */
+        isValid = true; // for the time being, while we haven't yet implemented validity-checking
+    } while (!isValid);
+    return input;
 }

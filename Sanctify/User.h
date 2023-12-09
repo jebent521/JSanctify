@@ -6,4 +6,5 @@ public:
 	void startMenu();
 	void login();
 	void signUp();
+	//void forgotPassword(); // if we get around to it
 };
