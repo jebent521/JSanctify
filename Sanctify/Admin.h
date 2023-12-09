@@ -2,7 +2,7 @@
 #include <string>
 #include "User.h"
 
-class Admin : public User {
+class Admin : public Employee {
 public:
 	Admin(std::string un);
 	void mainMenu();
