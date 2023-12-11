@@ -197,7 +197,7 @@ std::string inputString(string prompt)
 }
 
 void contentOptions(string option) {
-
+    notImplemented();
 }
 
 void notImplemented() {

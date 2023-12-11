@@ -10,7 +10,7 @@ Admin::Admin(string un, string fn) : Employee(un, fn)
 
 void Admin::mainMenu()
 {
-	cout << "\nHello" << firstName << "! Welcome back to Sanctify." << endl;
+	cout << "\nHello " << firstName << "! Welcome back to Sanctify." << endl;
 	cout << "You are an admin." << endl;
 	bool exiting = false;
 	do 
