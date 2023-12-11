@@ -1,4 +1,7 @@
 # Sanctify/README
+## Authors:
+Jonah Ebent, Evan Whitmer, Tessa Habet, Claire Cardie
+
 ## About
 Sanctify currently cantains the skeleton of C++ and SQL for making a clone of the Hallow app by Hallow, Inc. (https://hallow.com/).
 Different roles are outlined (Admin, Employee, ContentCreator, User) with different access rights within the data base.
