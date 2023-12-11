@@ -26,7 +26,6 @@ void ContentCreator::mainMenu()
 		cout << " 6) View your profile" << endl;
 		cout << " 7) Logout" << endl;
 		cout << " 8) Quit" << endl;
-		cout << "-----------------------------------" << endl;
 		switch (inputValueBetween(1, 8)) {
 		case 1:
 			browseContent();
