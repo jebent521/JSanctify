@@ -183,10 +183,11 @@ void User::searchContent() {
 		else { //prints matches to search 
 			for (int i = 0; i < vectorSize; i += 2) {
 				int number = (i / 2) + 1;
-				string name = searchQuery.at(1);
+				string name = searchQuery.at(i+1);
 				cout << "  " << number << ") " << name << endl;
 			}
 			int selection = inputValueBetween(1, vectorSize);
+			contentOptions(searchQuery.at((selection - 1) * 2));
 		}
 	} while (true);
 }
