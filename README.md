@@ -1,10 +1,11 @@
 # Sanctify/README
 ## Authors:
-Jonah Ebent, Evan Whitmer, Tessa Habet, Claire Cardie
+*Jonah Ebent*, Evan Whitmer, Tessa Habet, Claire Cardie
 
 ## About
 Sanctify currently cantains the skeleton of C++ and SQL for making a clone of the Hallow app by Hallow, Inc. (https://hallow.com/).
 Different roles are outlined (Admin, Employee, ContentCreator, User) with different access rights within the data base.
+This repo is a copy of the Sanctify repo. I wanted to work on this project on my own without modifying the original group project.
 
 ## In Sanctify folder
 Header files and corresponding cpp files according to the different roles, each with their own terminal menu. The terminal
